@@ -28,6 +28,9 @@ public class Login {
     
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/div/div[1]/div[1]/p")
     WebElement txtInvalidCredentials;
+    
+    @FindBy(xpath = "//div[@class='orangehrm-login-slot-wrapper']//div[1]//div[1]//span[1]")
+    WebElement txtRequired;
 
     public void login(String username, String password){
         this.username.sendKeys(username);
@@ -41,6 +44,10 @@ public class Login {
     
     public String getTxtInvalidCredentials(){
         return txtInvalidCredentials.getText();
+    }
+    
+    public String getTxtRequired(){
+        return txtRequired.getText();
     }
 
 }
