@@ -1,7 +1,9 @@
 package com.juaracoding.selenium.pageobject;
 
 import com.juaracoding.selenium.pageobject.drivers.DriverSingleton;
+import com.juaracoding.selenium.pageobject.pages.Dashboard;
 import com.juaracoding.selenium.pageobject.pages.Login;
+import com.juaracoding.selenium.pageobject.pages.Recruitment;
 import com.juaracoding.selenium.pageobject.utils.Constants;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -10,9 +12,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestLogin {
+public class TestRecruitment {
     public static WebDriver driver;
     private Login login;
+    private Recruitment recruitment;
 
     @BeforeClass
     public void setUp() {
@@ -24,6 +27,7 @@ public class TestLogin {
     @BeforeMethod
     public void pageObject() {
         login = new Login();
+        recruitment = new Recruitment();
     }
 
     @AfterClass
@@ -32,28 +36,25 @@ public class TestLogin {
         DriverSingleton.closeObjectInstance();
     }
 
-    @Test(priority = 3)
-    public void testValidLogin() {
+    @Test
+    public void testRecruitmentPage() {
         delay(Constants.DETIK);
+        // PreCondition
         login.login("Admin","admin123");
-        Assert.assertEquals(login.getTxtEmployeeInformation(), "Employee Information");
-        System.out.println("Test Case Valid Login");
+        delay(Constants.DETIK);
+        // Step
+        recruitment.menuRecruitment();
+        Assert.assertEquals(recruitment.getTxtRecruitment(), "Recruitment");
+        System.out.println("Test Case Recruitment Page");
     }
 
-    @Test(priority = 1)
-    public void testInValidLogin() {
+    @Test
+    public void testSearchByHiringManager() {
         delay(Constants.DETIK);
-        login.login("Admin1","admin123");
-        Assert.assertEquals(login.getTxtInvalidCredentials(), "Invalid credentials");
-        System.out.println("Test Case InValid Login");
-    }
-
-    @Test(priority = 2)
-    public void testUsernamePasswordKosong() {
-        delay(Constants.DETIK);
-        login.login("","");
-        Assert.assertEquals(login.getTxtRequired(), "Required");
-        System.out.println("Test Case Username Password Kosong");
+        // Step
+        recruitment.searchByHiringManager();
+        Assert.assertTrue(recruitment.getTxtLinda().contains("Linda"));
+        System.out.println("Test Case Search By Hiring Manager");
     }
 
     static void delay(int detik) {
@@ -64,5 +65,4 @@ public class TestLogin {
             e.printStackTrace();
         }
     }
-
 }

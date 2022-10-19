@@ -18,7 +18,7 @@ public class TestLoginSiloam {
     public void setUp() {
         DriverSingleton.getInstance(Constants.CHROME);
         driver = DriverSingleton.getDriver();
-        driver.get(Constants.URL);
+        driver.get("https://dev.ptdika.com/siloam/panel/login/");
     }
 
     @BeforeMethod
