@@ -1,10 +1,7 @@
 package com.juaracoding.selenium.pageobject;
 
 import com.juaracoding.selenium.pageobject.drivers.DriverSingleton;
-import com.juaracoding.selenium.pageobject.pages.Alerts;
-import com.juaracoding.selenium.pageobject.pages.Frames;
-import com.juaracoding.selenium.pageobject.pages.ModalDialogs;
-import com.juaracoding.selenium.pageobject.pages.WebTables;
+import com.juaracoding.selenium.pageobject.pages.*;
 import com.juaracoding.selenium.pageobject.utils.Constants;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +11,7 @@ public class MainApp {
 
         DriverSingleton.getInstance(Constants.CHROME);
         WebDriver driver = DriverSingleton.getDriver();
-        driver.get(Constants.URL);
+//        driver.get(Constants.URL);
 
 //        WebTables webTables = new WebTables();
 //        webTables.registrationForm("Text 1", "Text 2", "text@email.com", "20", "20000", "SQA");
@@ -33,9 +30,13 @@ public class MainApp {
 //        ModalDialogs modalDialogs = new ModalDialogs();
 //        modalDialogs.showSmallModal();
 
-        driver.get("https://demoqa.com/frames");
-        Frames frames = new Frames();
-        frames.sampleFrame();
+//        driver.get("https://demoqa.com/frames");
+//        Frames frames = new Frames();
+//        frames.sampleFrame();
+
+        driver.get("https://demoqa.com/automation-practice-form");
+        PracticeForm practiceForm = new PracticeForm();
+        practiceForm.inputForm();
 
         try {
             Thread.sleep(3000);
